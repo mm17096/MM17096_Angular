@@ -1,0 +1,33 @@
+<div class="container">
+  <h1>Estamos trabajando con NgFor</h1>
+  <hr />
+  <br />
+  <p>Esta es una tabla</p>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Precio</th>
+        <th>Stock</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let producto of listaProductos">
+        <td>{{producto.nombre}}</td>
+        <td>{{producto.precio}}</td>
+        <td>{{producto.stock}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <br/>
+  <p>Estos son un ul y li</p>
+  <ul class="fruits-list">
+    <li *ngFor="let fruta of listaFrutas">
+      <img src="{{fruta.url}}" width="100" class="fruit-image">
+      <br />
+      <a>Nombre: {{fruta.nombre}}</a>
+    </li>
+  </ul>
+</div>
+<div class="d-flex p-2 m-5"></div>

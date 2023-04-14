@@ -1,0 +1,16 @@
+.banner{
+    background-color: #357cc2;
+    padding: 0;
+    margin: 0;
+    height: 30px;
+}
+
+button {
+  background-color: transparent;
+  border: none;
+  color: rgb(163, 163, 163); /*opcional, para darle color al texto del botón*/
+}
+
+button:hover{
+  color: rgb(204, 204, 204);
+}

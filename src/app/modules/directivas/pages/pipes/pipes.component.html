@@ -1,0 +1,55 @@
+<div class="container">
+    <span>En Angular, los "pipes" (también conocidos como "tuberías" o "filtros") son una característica que permite transformar datos en una 
+        plantilla de manera declarativa. Los pipes toman una entrada de datos, la procesan y devuelven una salida que se puede mostrar en 
+        la plantilla, los datos no se modifican directamente solo se muestran con un formato especifico, pero se mantiene su estado normal</span>
+    <div class="d-flex p-2 m-2"></div>
+    <!-- Uppercase pipe -->
+    <p>
+       Con PIPES:  {{'hello world' | uppercase }} <span> => (uppercase de PIPES hace mayuscula una cadena de caracteres)</span>
+       <br/>
+       Sin PIPES:  {{'hello world'}}
+    </p>
+
+    <!-- Lowercase pipe -->
+    <p>
+        Con PIPES:  {{ 'HELLO WORLD' | lowercase }} <span> => (lowercase de PIPES hace mayuscula una cadena de caracteres)</span>
+        <br/>
+        Sin PIPES:  {{'HELLO WORLD'}}
+    </p>
+
+    <!-- Date pipe -->
+    <p>
+        Con PIPES:  {{ date | date:'fullDate' }} <span> => (date: 'fullDate' genera un formato especifico a la fecha)</span>
+        <br/>
+        Sin PIPES:  {{date}}
+    </p>
+
+    <!-- Currency pipe -->
+    <p>
+        Con PIPES:  {{ 1000 | currency:'USD':true }} <span> => (currency:'USD':true genera un formato de moneda al valor numerico)</span>
+        <br/>
+        Sin PIPES:  {{1000}}
+    </p>
+
+    <!-- Decimal pipe -->
+    <p>
+        Con PIPES:   {{ 3.14159 | number:'1.2-2' }} <span> => (3.14159 | number:'1.2-2' genera un formato de numeros decimales)</span>
+        <br/>
+        Sin PIPES:  {{3.14159}}
+    </p>
+
+    <!-- Percent pipe -->
+    <p>
+        Con PIPES:  {{ 0.25 | percent }} <span> => (0.25 | percent genera un formato de porcentaje al valor entante)</span>
+        <br/>
+        Sin PIPES:  {{0.25}}
+    </p>
+
+    <!-- JSON pipe -->
+    <p>
+        Con PIPES:  {{ user | json }} <span> => (user | json genera un JSON con los parametros como cadena de caracteres u objetos)</span>
+        <br/>
+        Sin PIPES:  {{user}}
+    </p>
+    <div class="d-flex p-2 m-5"></div>
+</div>

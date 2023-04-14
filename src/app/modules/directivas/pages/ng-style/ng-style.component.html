@@ -1,0 +1,17 @@
+<div class="container mt-5">
+    <!-- pasando un objeto -->
+    <h1 [ngStyle]="{'color':colorEstado}">Trabajo con ngStyle</h1>
+    <h1 [ngStyle]="{'color':color}">Con objeto y metodo</h1>
+    <h1 [ngStyle]="{'color':message === 1 ? 'green' : 'red' }">Mensaje condicional</h1>
+
+    <hr />
+    <p [style.fontSize.px]="size">
+        Con NgStyle combinamos el style: fontSize al texto
+    </p>
+
+    <button class="btn btn-primary m-1" (click)="size = size + 5"> + </button>
+    <button class="btn btn-primary m-1" (click)="size = size - 5"> - </button>
+    <hr />
+  
+    <button class="btn" [class.btn-primary]="bandera" (click)="bandera=!bandera">Enviar</button>  
+</div>
