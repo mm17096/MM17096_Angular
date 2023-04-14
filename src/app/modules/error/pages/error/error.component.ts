@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PAGE_NOT_FOUND } from 'src/app/constants/constants';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-error',
@@ -10,8 +11,11 @@ export class ErrorComponent {
 
   error:string = PAGE_NOT_FOUND;
 
+  
+  constructor( private router: Router) { }
+
   regresar(){
-    window.location.href = './../../../home';
+    this.router.navigate(['home']);
   }
 
 }
