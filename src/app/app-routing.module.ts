@@ -3,6 +3,7 @@ import { RouterModule, Routes } from "@angular/router";
 import { ErrorComponent } from "@modules/error/pages/error/error.component";
 import { SkeletonComponent } from './layout/skeleton/skeleton.component';
 import { API_PEST } from "./constants/routes/routes";
+import { FormularioComponent } from "@shared/formulario/formulario.component";
 
 //Matris de objetos para las rutas
 const routes: Routes = [
@@ -12,8 +13,9 @@ const routes: Routes = [
         children: [
             {path: 'home', loadChildren: () => import('@modules/home/home.module').then(m => m.HomeModule)},
             {path: 'directivas', loadChildren: () => import('@modules/directivas/directivas.module').then(m => m.DirectivasModule)},
-           /*  {path: 'mascotas', loadChildren: () => import('@modules/mascotas/mascotas.module').then(m => m.MascotasModule)} */
+            {path:'formulario',component:FormularioComponent},
            {path: API_PEST, loadChildren: () => import('@modules/mascotas/mascotas.module').then(m => m.MascotasModule)}
+
         ]
     },
     {

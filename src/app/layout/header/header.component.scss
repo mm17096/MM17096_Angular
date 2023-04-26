@@ -5,12 +5,13 @@
     height: 30px;
 }
 
-button {
+.menu_item {
   background-color: transparent;
   border: none;
-  color: rgb(163, 163, 163); /*opcional, para darle color al texto del botón*/
+  color: rgb(163, 163, 163) !important; /*opcional, para darle color al texto del botón*/
 }
 
-button:hover{
-  color: rgb(204, 204, 204);
+.menu_item:hover{
+  color: rgb(204, 204, 204) !important;
+  cursor: pointer;
 }

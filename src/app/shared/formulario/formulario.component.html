@@ -1,0 +1,334 @@
+<div class="d-flex p-2 m-5"></div>
+<div class="container">
+  <h2>Formulario Reactivo</h2>
+  <div class="card border-primary colmd-12">
+    <div class="card-header bg-info"><strong>Datos Generalizados</strong> </div>
+    <div class="card-body">
+      <form
+
+      class="mt-3"
+      (ngSubmit)="guardar()"
+      [formGroup]="formularioGeneral">
+
+      <!-- elementos del formulario-->
+      <div class="form-group row">
+        <div class="form-group col-md-6">
+        <input
+        type="text"
+        class="form-control form-control-sm"
+        placeholder="Nombre"
+        formControlName="nombre"
+        [class]="esCampoValido('nombre')"
+        />
+        <div class="invalid-feedback">
+        <!-- aqui la validación-->
+        <span *ngIf="formularioGeneral.get('nombre')?.errors?.['required']">
+          Requiere un nombre</span>
+          <span *ngIf="formularioGeneral.get('nombre')?.errors?.['pattern']">
+            Nombre no válido</span>
+        </div>
+        </div>
+        <!--fin input nombre -->
+        <!-- aquí input apellido -->
+        <div class="form-group col-md-6">
+          <input
+          type="text"
+          class="form-control form-control-sm"
+          placeholder="Apellido"
+          formControlName="apellido"
+          [class]="esCampoValido('apellido')"
+          />
+          <div class="invalid-feedback">
+          <!-- aqui la validación-->
+          <span *ngIf="formularioGeneral.get('apellido')?.errors?.['required']">
+            Requiere un apellido</span>
+            <span *ngIf="formularioGeneral.get('apellido')?.errors?.['pattern']">
+              Apellido no válido</span>
+          </div>
+        </div>
+      </div>
+      <!-- fin de los input -->
+      <!-- input email -->
+      <div class="form-group form-floating mt-3">
+        <input
+        type="email"
+        class="form-control"
+        formControlName="correo"
+        [class]="esCampoValido('correo')"
+        />
+        <label class="floatingInput">Correo</label>
+        <div class="invalid-feedback">
+          <span *ngIf="formularioGeneral.get('correo')?.errors?.['required']">
+            Requiere un correo</span>
+            <span *ngIf="formularioGeneral.get('correo')?.errors?.['pattern']">
+              Email no válido</span>
+          </div>
+      </div>
+       <!-- fin input del email -->
+       <!-- start input genero -->
+       <div class="form-group row">
+        <div class="form-group col-md-6 mt-1">
+          <label>Género</label>
+          <div class="form-check form-check-inline m-3">
+            <input
+            type="radio"
+            class="form-check-input"
+            formControlName="genero"
+            value="Mujer"
+            [class]="esCampoValido('genero')"
+            />
+            <label class="form-check-label">Mujer</label>
+          </div>
+          <!-- Aqui para el div de hombre -->
+          <div class="form-check form-check-inline m-3">
+            <input
+            type="radio"
+            class="form-check-input"
+            formControlName="genero"
+            value="Hombre"
+            [class]="esCampoValido('genero')"
+            />
+            <label class="form-check-label">Hombre</label>
+          </div>
+          <div class="invalid-feedback">
+            <span *ngIf="formularioGeneral.get('genero')?.errors?.['required']">
+              Requiere el género</span>
+            </div>
+        </div>
+        <!-- fin de los radios del genero -->
+        <div class="form-group form-floating mt-3">
+          <textarea
+          row="3"
+          class="form-control"
+          formControlName="mensaje"
+          [class]="esCampoValido('mensaje')"></textarea>
+          <label class="floatingInput">Mensaje</label>
+          <div class="invalid-feedback">
+            <!-- aqui la validación-->
+          <span *ngIf="formularioGeneral.get('mensaje')?.errors?.['required']">
+            Requiere un mensaje</span>
+          <span *ngIf="formularioGeneral.get('mensaje')?.errors?.['minlength']">
+            Tamaño minimo{{formularioGeneral.get('mensaje')?.errors?.['minlength']?.requiredLength}}</span>
+            <span *ngIf="formularioGeneral.get('mensaje')?.errors?.['maxlength']">
+              Tamaño maximo{{formularioGeneral.get('mensaje')?.errors?.['maxlength']?.requiredLength}}</span>
+          </div>
+        </div>
+        <!-- Aqui para un calendario-->
+        <div class="form-group col-md-6 mt-3">
+          <input
+          type="date"
+          class="form-control"
+          placeholder="dd-mm-yyyy"
+          formControlName="fecha"
+          [class]="esCampoValido('fecha')"
+          />
+          <div class="invalid-feedback">
+            <span *ngIf="formularioGeneral.get('fecha')?.errors?.['required']">
+              Requiere una fecha</span>
+              <span *ngIf="formularioGeneral.get('fecha')?.errors?.['pattern']">
+                Requiere fecha válida</span>
+            </div>
+        </div>
+       </div>
+       <div class="form-group row">
+        <div class="form-group col-md-4 mt-1">
+          <label>Departamento</label>
+          <select
+          class="form-control form-select"
+          formControlName="departamento"
+          [class]="esCampoValido('departamento')"
+          (ngModelChange)="deptoChange($event)"
+          >
+          <option value="">Seleccione</option>
+          <!-- Cargar todos los departamentos -->
+          <option *ngFor="let dpt of departamentos" [ngValue]="dpt.codigo">
+            {{dpt.na2}}
+          </option>
+        </select>
+        <div class="invalid-feedback">
+          <!-- aqui la validación-->
+          <span *ngIf="formularioGeneral.get('departamento')?.errors?.['required']">
+            Requiere un Deparmento</span>
+          </div>
+        </div> <!-- fin combo departamentos-->
+        <!-- inicio combo municipio -->
+        <div class="form-group col-md-4 mt-1">
+          <label>Municipio</label>
+          <select
+          class="form-control form-select"
+          formControlName="municipio"
+          [class]="esCampoValido('municipio')"
+          (ngModelChange)="muniChange($event)"
+          >
+          <option value="">Seleccione</option>
+          <!-- cargar todos los municipios del depto -->
+          <option *ngFor="let muni of municipios" [ngValue]="muni.codigo">
+            {{muni.nam}}
+          </option>
+        </select>
+        <div class="invalid-feedback">
+          <!-- aqui la validación-->
+          <span *ngIf="formularioGeneral.get('municipio')?.errors?.['required']">
+            Requiere un municipio</span>
+          </div>
+        </div><!-- fin combo municipio -->
+        <!-- inicio combo canton -->
+        <div class="form-group col-md-4 mt-1">
+          <label>Urbana Cantón</label>
+          <select
+          class="form-control form-select"
+          formControlName="canton"
+          [class]="esCampoValido('canton')">
+          <option value="">Seleccione</option>
+          <!-- cargar todos los cantones del municipio -->
+          <option *ngFor="let ctn of cantones" [ngValue]="ctn.codigo">
+            {{ctn.nam}}
+          </option>
+        </select>
+        <div class="invalid-feedback">
+          <!-- aqui la validación-->
+          <span *ngIf="formularioGeneral.get('canton')?.errors?.['required']">
+            Requiere una selección</span>
+          </div>
+        </div><!-- fin combo canton -->
+       </div> <!-- fin combos -->
+
+       <div class="form-group row mt-2" formGroupName="direccion">
+        <div class="form-group col-md-6">
+          <input
+          type="text"
+          class="form-control form-control-sm"
+          placeholder="Ubicacion"
+          formControlName="ubicacion"
+          [class]="noRequiereValor('direccion.ubicacion')"
+          />
+          <div class="invalid-feedback">
+            <!-- aqui van las validaciones del ubicacion -->
+            <span *ngIf="formularioGeneral.get('direccion.ubicacion')?.errors?.['required']">
+              Requiere una ubicacion</span>
+          </div>
+        </div>
+        <div class="form-group col-md-6">
+          <input
+          type="text"
+          class="form-control form-control-sm"
+          placeholder="Colonia/Barrio"
+          formControlName="colonia"
+          [class]="noRequiereValor('direccion.colonia')"
+          />
+          <div class="invalid-feedback">
+            <!-- aqui van las validaciones del colonia -->
+            <span *ngIf="formularioGeneral.get('direccion.colonia')?.errors?.['nullValidator']">
+              Requiere una colonia</span>
+          </div>
+        </div>
+       </div>
+       <!-- fin de direccion -->
+       <div class="form-group row">
+        <div class="form-group col-md-6 mt-1" formGroupName="gustos">
+          <label>Colores Favoritos</label>
+          <div class="form-check form-check-inline m-3">
+            <input
+          type="checkbox"
+          class="form-check-input"
+          formControlName="verde"
+          [class]="noRequiereValor('verde')"/>
+          <label class="form-check-label">Verde</label>
+          </div>
+          <div class="form-check form-check-inline m-3">
+            <input
+          type="checkbox"
+          class="form-check-input"
+          formControlName="rojo"
+          [class]="noRequiereValor('rojo')"/>
+          <label class="form-check-label">Rojo</label>
+          </div>
+          <div class="form-check form-check-inline m-3">
+            <input
+          type="checkbox"
+          class="form-check-input"
+          formControlName="negro"
+          [class]="noRequiereValor('negro')"/>
+          <label class="form-check-label">Negro</label>
+          </div>
+        </div><!-- fin colores -->
+
+        <!-- aqui para un check de estado -->
+        <div class="form-check form-switch col-md-6 mt-3">
+          <label class="form-check-label" for="flexSwitchCheckDefault">
+            Estado
+          </label>
+          <input
+          type="checkbox"
+          class="form-check-input"
+          formControlName="estado"
+          [class]="noRequiereValor('estado')"/>
+        </div>
+       </div><!-- fin preferencias -->
+       <div class="form-group col-md-4">
+        <label class="input-group text">Salario</label>
+        <div class="form-group">
+          <div class="input-group mb-3">
+            <span class="input-group-text">$</span>
+            <input
+          type="text"
+          class="form-control"
+          formControlName="salario"
+          [class]="esCampoValido('salario')" />
+          <div class="invalid-feedback">
+            <!-- aqui van las validaciones del salario -->
+            <span *ngIf="formularioGeneral.get('salario')?.errors?.['required']">
+              Requiere un salario</span>
+              <span *ngIf="formularioGeneral.get('salario')?.errors?.['pattern']">
+                Requiere valor númerico</span>
+              <span *ngIf="formularioGeneral.get('salario')?.errors?.['min']">
+                Salario >= al minimo(300) {{formularioGeneral.get('salario')?.errors?.['min']?.requiredLength}}</span>
+          </div>
+          </div>
+        </div>
+       </div><!-- fin salario -->
+      <hr>
+      <div class="row">
+        <div class="col">
+          <table class="table table-hover">
+            <thead>
+              <tr class="table-dark">
+                <th>N</th>
+                <th>Pasatiempos</th>
+                <th>Quitar</th>
+              </tr>
+            </thead>
+            <tbody formArrayName="pasatiempos">
+              <tr *ngFor="let control of pasatiempos.controls; let i=index">
+                <td>{{i+1}}</td>
+                <td>
+                  <input type="text "
+                  class="form-control"
+                  [formControlName]="i"/>
+                </td>
+                <td>
+                  <button (click)="borrarPasatiempo(i)" class="btn btn-danger"> Quitar</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <button type="button" class="btn btn-primary mt-3 mb-5 btn-block"
+          (click)="agregarPasatiempo()" >
+            Agregar
+          </button>
+        </div>
+      </div><!-- fin pasatiempos -->
+
+        <!-- fin de los radios y calendario -->
+        <button type="submit" class="btn btn-sm btn-outline-info mt-sm-2">
+          <i class="bi bi-database-add"></i>Guardar
+        </button>
+        <!-- fin form -->
+    </form>
+    </div>
+  </div>
+  <hr />
+  <p>Form value: {{ formularioGeneral.value | json }}</p>
+  <hr />
+</div>
+

@@ -9,6 +9,6 @@
     <p class="card-text"><strong>Peso </strong> {{ obj.peso }}</p>
     <p class="card-text"><strong>Guardian </strong> {{ obj.guardian }}</p>
     <a [routerLink]="['/'+pets+'/',obj.id]" class="btn btn-primary"> Leer más</a>
-    <button mat-button class="btn btn-danger m-2" (click)="eliminar(obj.id)"><i class="bi bi-trash"></i>Eliminar</button>
-</div>
+    <a (click)="eliminarPets(obj.id)" class="btn btn-warning m-1"><i class="bi bi-trash"></i> Quitar</a>
+  </div>
 </div>
