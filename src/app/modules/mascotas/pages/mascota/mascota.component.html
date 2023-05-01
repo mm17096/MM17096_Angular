@@ -26,6 +26,7 @@
                 <P>{{ mascota.nutricion }}</P>
                 <br>
                 <button mat-button class="btn btn-primary m-2" (click)="regresar()"><i class="bi bi-backspace"></i> Regresar</button>
+                <button style="border: 0; background-color: transparent;"><app-nuevo [leyenda]="'Editar'" [mascota]="mascota"></app-nuevo></button>
                 <button mat-button class="btn btn-danger m-2" (click)="eliminar()"><i class="bi bi-trash"></i> Eliminar</button>
             </div>
         </div>

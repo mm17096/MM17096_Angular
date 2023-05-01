@@ -62,4 +62,17 @@ export class MascotasService {
     });
   }
 
+
+  //Metodo para crear nueva mascota
+  NuevaMascota(pet: IMascota): any {
+    const url = `${this.URL}/mascotas/`;
+    return this.httpClient.post(url,pet);
+  }
+
+  //Metodo para editar una mascota
+  EditarMascota(pet: IMascota): any {
+    console.log(pet);
+    const url = `${this.URL}/mascotas/${pet.id}`;
+    return this.httpClient.put(url,pet);
+  }
 }

@@ -12,6 +12,7 @@ import Swal from 'sweetalert2';
   templateUrl: './formulario.component.html',
   styleUrls: ['./formulario.component.scss']
 })
+
 export class FormularioComponent implements OnInit {
   formularioGeneral!: FormGroup;
   private isEmail: string = EMAIL_VALIDATE;

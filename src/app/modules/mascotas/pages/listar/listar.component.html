@@ -7,8 +7,12 @@
     placeholder="Buscar carta"
     [(ngModel)]="parametroBuscar"
     (keyup)="buscar()">
-
     <hr/>
+
+    <div>
+        <app-nuevo [leyenda]="'Nuevo'"></app-nuevo>
+    </div>
+
     <div class="row row-cols-1 row-cols-md-3 row-cols-xl-5 justify-content-center">
         <ng-container *ngFor="let obj of mascotas">
             <app-card [obj]="obj" (eliminar)="EliminarCard($event)"></app-card>
